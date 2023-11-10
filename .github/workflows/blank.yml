@@ -24,7 +24,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t go-app-image .
+          ocker build -t go-app-image -f CI_CD_TEST/Dockerfile .
 
       - name: Run Docker container
         run: |
