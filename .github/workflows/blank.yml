@@ -15,14 +15,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Docker
-        run: |
-          sudo apt-get update
-          sudo apt-get -y install docker.io
-          sudo apt install containerd
-          sudo usermod -aG docker $USER
-          sudo usermod -aG docker github-runner  # You might need to add the GitHub Actions runner user to the docker group
-          sudo systemctl restart docker
+      - name: Set up docker
+        using: 'docker'
+        image: 'Dockerfile'
+
+      # - name: Set up Docker
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get -y install docker.io
+      #     sudo usermod -aG docker $USER
+      #     sudo usermod -aG docker github-runner  # You might need to add the GitHub Actions runner user to the docker group
+      #     sudo systemctl restart docker
 
       - name: Build Docker image
         run: |
