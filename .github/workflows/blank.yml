@@ -24,7 +24,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t go-app-image ./app
+          docker build -t go-app-image .
 
       - name: Run Docker container
         run: |
