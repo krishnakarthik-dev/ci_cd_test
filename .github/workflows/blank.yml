@@ -13,21 +13,17 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: docker-practice/actions-setup-docker@master
 
-      - name: Set up docker
-        using: 'docker'
-        image: 'Dockerfile'
+      - name: Set up Docker
+        run: |
+          sudo apt-get update
+          docker version
+          sudo usermod -aG docker $USER
+          sudo usermod -aG docker github-runner  # You might need to add the GitHub Actions runner user to the docker group
+          sudo systemctl restart docker
 
-      # - name: Set up Docker
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get -y install docker.io
-      #     sudo usermod -aG docker $USER
-      #     sudo usermod -aG docker github-runner  # You might need to add the GitHub Actions runner user to the docker group
-      #     sudo systemctl restart docker
-
-      # - name: Build Docker image
+      - name: Build Docker image
         run: |
           docker build -t go-app-image .
 
