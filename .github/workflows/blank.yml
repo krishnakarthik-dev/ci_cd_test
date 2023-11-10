@@ -15,7 +15,7 @@ jobs:
       - name: Checkout code
         uses: docker-practice/actions-setup-docker@master
         with:
-          context: ./app
+          context: app/
           file: ./Dockerfile
 
       - name: Set up Docker
